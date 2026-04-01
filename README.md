@@ -33,7 +33,7 @@ Certifique-se de ter o `g++` (GCC) instalado.
 
 1.  **Clonar o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/telecom-cpp.git](https://github.com/seu-usuario/telecom-cpp.git)
+    git clone https://github.com/fnmiranda/telecom-projects.git
     ```
 2.  **Compilar um projeto:**
     ```bash
