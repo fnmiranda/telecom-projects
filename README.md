@@ -3,7 +3,7 @@
 Repositório dedicado à implementação de modelos matemáticos e físicos estudados em Engenharia de Telecomunicações e Eletrônica. O foco é transformar a teoria de sinais e componentes em algoritmos funcionais.
 
 ---
-Estou fazendo um de merge - não ligo pro teste 
+SEGUE O GUIA
 ---
 
 ## 🚀 Projetos Atuais
