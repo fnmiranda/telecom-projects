@@ -243,6 +243,17 @@ que utiliza o Matplotlib do Python internamente.
 
 ---
 
+## Resultados
+
+### Funções amostrais
+
+![Função amostral](graficos/realizacao.png)
+
+
+### Autocorrelação
+
+![Autocorrelação](graficos/autocorrelacao.png)
+
 ## Dependências
 
 O projeto utiliza:

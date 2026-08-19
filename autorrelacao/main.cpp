@@ -37,7 +37,7 @@ int main (){
   ptl::ylabel("X(t)");
   ptl::title("Funcoes amostrais");
   ptl::legend();
-
+  ptl::save("graficos/realizacao.png");
 
   // Nova figura para autocorrelacao
   ptl::figure();
@@ -49,6 +49,7 @@ int main (){
   ptl::title("Autocorrelacao");
   ptl::legend();
   
+  ptl::save("graficos/autocorrelacao.png");
   ptl::show();
 
   return 0;
