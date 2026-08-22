@@ -110,17 +110,7 @@ $$\sigma_W^2=P_w=10^{-SNR_{dB}/10}$$
 
 A autocorrelação é estimada por:
 
-$$
-\hat{R}_X[k]
-=
-\frac{1}{M}
-\sum_{m=0}^{M-1}
-\left[
-\frac{1}{N-k}
-\sum_{i=0}^{N-k-1}
-X_m[i]X_m[i+k]
-\right]
-$$
+$$\hat{R}_X[k]=\frac{1}{M}\sum_{m=0}^{M-1}\left[\frac{1}{N-k}\sum_{i=0}^{N-k-1}X_m[i]X_m[i+k]\right]$$
 
 onde:
 
