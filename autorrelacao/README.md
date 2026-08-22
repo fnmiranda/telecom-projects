@@ -9,9 +9,7 @@ O programa gera funções amostrais de uma senoide com fase aleatória e ruído 
 
 O processo analisado é:
 
-$$
-X(t)=A\cos(2\pi f_c t+\Theta)+W(t)
-$$
+$$X(t)=A\cos(2\pi f_c t+\Theta)+W(t)$$
 
 com:
 
@@ -66,24 +64,15 @@ projeto/
 
 Para cada realização $m$, uma fase aleatória $\Theta_m$ é gerada e mantida constante:
 
-$$
-X_m(t_i)
-========
-
-\sqrt{2}\cos(2\pi f_c t_i+\Theta_m)+W_m(t_i)
-$$
+$$X_m(t_i)=\sqrt{2}\cos(2\pi f_c t_i+\Theta_m)+W_m(t_i)$$
 
 com:
 
-$$
-t_i=i\Delta t
-$$
+$$t_i=i\Delta t$$
 
 e
 
-$$
-W_m(t_i)\sim\mathcal{N}(0,\sigma_W^2)
-$$
+$$W_m(t_i)\sim\mathcal{N}(0,\sigma_W^2)$$
 
 As realizações são armazenadas em:
 
@@ -105,21 +94,15 @@ representa a amostra `i` da realização `m`.
 
 Como a potência da senoide é:
 
-$$
-P_s=\frac{A^2}{2}=1
-$$
+$$P_s=\frac{A^2}{2}=1$$
 
 e
 
-$$
-SNR_{dB}=10\log_{10}\left(\frac{P_s}{P_w}\right)
-$$
+$$SNR_{dB}=10\log_{10}\left(\frac{P_s}{P_w}\right)$$
 
 a variância do ruído é:
 
-$$
-\sigma_W^2=P_w=10^{-SNR_{dB}/10}
-$$
+$$\sigma_W^2=P_w=10^{-SNR_{dB}/10}$$
 
 ---
 
@@ -129,8 +112,7 @@ A autocorrelação é estimada por:
 
 $$
 \hat{R}_X[k]
-============
-
+=
 \frac{1}{M}
 \sum_{m=0}^{M-1}
 \left[
@@ -149,9 +131,7 @@ onde:
 
 Como a autocorrelação de sinais reais é par:
 
-$$
-R_X(-\tau)=R_X(\tau)
-$$
+$$R_X(-\tau)=R_X(\tau)$$
 
 somente os atrasos positivos precisam ser calculados; os negativos são obtidos por espelhamento.
 
