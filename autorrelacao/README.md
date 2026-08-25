@@ -130,7 +130,7 @@ somente os atrasos positivos precisam ser calculados; os negativos são obtidos 
 ## FFT e IFFT
 Observação, no arquivo src/autocorrelacao.cpp foi incluida uma função para calcular o autocorreção usando fft e ifft chamada xcorr, otimizando o algorimo
 
-$$\ A complexidade normal é O[M*N^2] já da xcorr é O[M*N*log(M)] $$
+A complexidade normal é O[M*N^2] já da xcorr é O[M*N*log(M)]
 
 ## Resultados
 
