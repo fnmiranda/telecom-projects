@@ -112,13 +112,6 @@ A autocorrelação é estimada por:
 
 $$\hat{R}_X[k]=\frac{1}{M}\sum_{m=0}^{M-1}\left[\frac{1}{N-k}\sum_{i=0}^{N-k-1}X_m[i]X_m[i+k]\right]$$
 
-onde:
-
-* $M=100$;
-* $N=30000$;
-* $k$ é o atraso em amostras;
-* $\tau=k\Delta t$ é o atraso em segundos.
-
 Como a autocorrelação de sinais reais é par:
 
 $$R_X(-\tau)=R_X(\tau)$$
@@ -130,7 +123,7 @@ somente os atrasos positivos precisam ser calculados; os negativos são obtidos 
 ## FFT e IFFT
 Observação, no arquivo src/autocorrelacao.cpp foi incluida uma função para calcular o autocorreção usando fft e ifft chamada xcorr, otimizando o algorimo
 
-A complexidade normal é O[M*N^2] já da xcorr é O[M*N*log(M)]
+A complexidade normal é $O[M\cdot N^2]$ já da função xcorr é $O[MN\cdot log(M)]$, produz os mesmos resultados mas com um tempo MUITO menor.
 
 ## Resultados
 
