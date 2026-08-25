@@ -62,7 +62,7 @@ projeto/
 
 ## Geração das Realizações
 
-Para cada realização $m$, uma fase aleatória $\Theta_m$ é gerada e mantida constante:
+Para cada realização $m$, uma fase uniforme e aleatória $\Theta_m$ é gerada e mantida constante:
 
 $$X_m(t_i)=\sqrt{2}\cos(2\pi f_c t_i+\Theta_m)+W_m(t_i)$$
 
@@ -126,6 +126,11 @@ $$R_X(-\tau)=R_X(\tau)$$
 somente os atrasos positivos precisam ser calculados; os negativos são obtidos por espelhamento.
 
 ---
+
+## FFT e IFFT
+Observação, no arquivo src/autocorrelacao.cpp foi incluida uma função para calcular o autocorreção usando fft e ifft chamada xcorr, otimizando o algorimo
+
+$$\ A complexidade normal é O[M*N^2] já da xcorr é O[M*N*log(M)] $$
 
 ## Resultados
 
