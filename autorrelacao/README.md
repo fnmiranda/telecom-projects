@@ -112,13 +112,6 @@ A autocorrelação é estimada por:
 
 $$\hat{R}_X[k]=\frac{1}{M}\sum_{m=0}^{M-1}\left[\frac{1}{N-k}\sum_{i=0}^{N-k-1}X_m[i]X_m[i+k]\right]$$
 
-onde:
-
-* $M=100$;
-* $N=30000$;
-* $k$ é o atraso em amostras;
-* $\tau=k\Delta t$ é o atraso em segundos.
-
 Como a autocorrelação de sinais reais é par:
 
 $$R_X(-\tau)=R_X(\tau)$$
