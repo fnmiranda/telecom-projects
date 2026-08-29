@@ -74,58 +74,50 @@ complex<double> w_k(int k, int n){
   return res; 
 }
 
-complex<double> w_k_i(int k, int n){
-  complex<double> expoente = (2*PI*k)/n;
-  complex<double> res  = exp(expoente*j);
-  return res; 
-}
-
 vector<complex<double>> xcorr(int n_amostras, int n_funcoes, const vector<vector<double>>& realizacoes){
 
-  //vector<vector<double>> realizacoes(NUM_FUNCOES, vector<double>(N));
   int L = 2*n_amostras;
-  vector<vector<complex<double>>> sinal(n_funcoes, vector<complex<double>>(L, 0));
+  int n_bits = static_cast<int>(log2(L));
+ // vector<vector<complex<double>>> sinal(n_funcoes, vector<complex<double>>(L, 0));
+  vector<complex<double>> buffer(L);
+  vector<double> p_media(L,0.0);
+
   for (int i=0;i<n_funcoes;i++){
+    fill(buffer.begin(), buffer.end(), complex<double>{0.0,0.0});
     int n=2;
     //bit-reversal
-    //vector<complex<double>> sinal(N); 
     for (int s=0;s<n_amostras;s++){
-      int pos = bitwise(s, log2(L));
-      sinal[i][pos] = realizacoes[i][s];
+      int pos = bitwise(s, n_bits);
+      buffer[pos] = realizacoes[i][s];
     }
     //fft
     while(n<=L){
       for (int k=0; k<L/2; k++){
         int r = k%(n/2);
-        complex<double> x_k = sinal[i][2*k -r] + sinal[i][2*k -r + n/2]*w_k(r,n);
-        complex<double> x_k_n_2 = sinal[i][2*k -r] - sinal[i][2*k -r + n/2]*w_k(r,n);
+        complex<double> x_k = buffer[2*k -r] + buffer[2*k -r + n/2]*w_k(r,n);
+        complex<double> x_k_n_2 = buffer[2*k -r] - buffer[2*k -r + n/2]*w_k(r,n);
         
-        sinal[i][2*k -r] = x_k;
-        sinal[i][2*k -r+n/2] = x_k_n_2;
+        buffer[2*k -r] = x_k;
+        buffer[2*k -r+n/2] = x_k_n_2;
       }
       n = n*2;
     }
     for (int n=0;n<L;n++){
-      complex<double> v = sinal[i][n];
-      sinal[i][n] = pow(v.imag(),2)+pow(v.real(),2);
+      complex<double> v = buffer[n];
+      p_media[n] += norm(v);
     }
   }
   //media
-  vector<complex<double>> p_media(L);
-  for(int k=0;k<L;k++){
-    complex<double> soma;
-    for(int n=0;n<n_funcoes;n++){
-      soma+=sinal[n][k];
-    }
-    p_media[k] = soma/static_cast<double>(n_funcoes);
+  for(double& valor : p_media){
+    valor /= static_cast<double>(n_funcoes);
   }
 
 
+  fill(buffer.begin(), buffer.end(), complex<double>{0.0,0.0});
   //bit-reversal
-  vector<complex<double>> sinal2(L); 
   for (int s=0;s<L;s++){
-    int pos = bitwise(s, log2(L));
-    sinal2[pos] = p_media[s];
+    int pos = bitwise(s, n_bits);
+    buffer[pos] = p_media[s];
 
   }
   //ifft
@@ -133,23 +125,19 @@ vector<complex<double>> xcorr(int n_amostras, int n_funcoes, const vector<vector
   while(n<=L){
     for (int k=0; k<L/2; k++){
       int r = k%(n/2);
-      complex<double> x_k = sinal2[2*k -r] + sinal2[2*k -r + n/2]*w_k_i(r,n);
-      complex<double> x_k_n_2 = sinal2[2*k -r] - sinal2[2*k -r + n/2]*w_k_i(r,n);
+      complex<double> x_k = buffer[2*k -r] + buffer[2*k -r + n/2]*w_k(-r,n);
+      complex<double> x_k_n_2 = buffer[2*k -r] - buffer[2*k -r + n/2]*w_k(-r,n);
       
-      sinal2[2*k -r] = x_k;
-      sinal2[2*k -r+n/2] = x_k_n_2;
+      buffer[2*k -r] = x_k;
+      buffer[2*k -r+n/2] = x_k_n_2;
     }
     n = n*2;
-  }
-    
-  for (int s=0;s<n_amostras;s++){
-    complex<double>v = sinal2[s];
-    sinal2[s] = v/static_cast<double>(L);
   }
   
   vector<complex<double>> res(n_amostras);
   for (int k=0; k<n_amostras;k++){
-    res[k] = sinal2[k]/static_cast<double>(n_amostras-k);
+    double normal = static_cast<double>(L) * static_cast<double>(n_amostras - k);
+    res[k] = buffer[k]/normal;
   }
 
   return res;

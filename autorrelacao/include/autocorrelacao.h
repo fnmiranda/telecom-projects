@@ -11,4 +11,5 @@ vector<double> autocorrelacao(int n_amostras, int n_funcoes, const vector<vector
 
 vector<complex<double>> xcorr(int n_amostras, int n_funcoes, const vector<vector<double>>& realizacoes);
 
+
 pair<vector<double>, vector<double>> gerar_vetores_completos(const vector<double>& tempos, const vector<double>& autocorrelacoes, double tau_min, double tau_max);

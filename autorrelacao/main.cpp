@@ -12,9 +12,6 @@ namespace ptl = matplotlibcpp;
 
 int main (){
   vector<int> SNR = {0,5,15};
-  //vector<vector<double>> realizacoes(NUM_FUNCOES, vector<double>(N));
-  //vector<double> tempos(N);
-  //vector<double> autocorrelacoes(N);
 
   auto start = chrono::high_resolution_clock::now();
   auto tempos = gerar_vetor_atrasos(N);
@@ -25,7 +22,7 @@ int main (){
   //Já esté outro metodo xcorr usa o conceito de FFT e IFFT pra reduzir a complexidade pra O[MNlog(M)]
   auto autocorrelacoes_complexa = xcorr(N, NUM_FUNCOES, realizacoes); 
   vector<double> autocorrelacoes(N);
-  for (int k=0;k<N;k++){
+  for (size_t k=0;k<N;k++){
     autocorrelacoes[k] = autocorrelacoes_complexa[k].real();
   }
   auto [eixo_x, autocorrelacoes_completo] = gerar_vetores_completos(tempos, autocorrelacoes, -300, 300);
